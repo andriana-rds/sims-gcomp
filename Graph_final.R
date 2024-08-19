@@ -3,10 +3,11 @@ if (!requireNamespace("gridExtra")) install.packages("gridExtra")
 
 library(ggplot2)
 library(gridExtra)
-setwd("N:/ICON/ICON_all/Users/Andriana Kostouraki/PhD/Latent unconfoundedness work/simulation/results")
-
-df<-read.csv("results_2024_02_29.csv", sep=",", header=T)
-
+#setwd("N:/ICON/ICON_all/Users/Andriana Kostouraki/PhD/Latent unconfoundedness work/simulation/results")
+#source()
+#df<-read.csv("results_2024_02_29.csv", sep=",", header=T)
+#df <- results[,c("estimand","estimate","method","dgm","rep")]
+df <- results
 tab<-data.frame(aggregate(estimate ~ method + estimand + dgm, data = df, mean))
 
 add_row<-data.frame("method"=rep(c(1,3,5),2), estimand=rep(1,6), dgm=rep(c(1,2), each=3), estimate=0)
@@ -43,7 +44,7 @@ t2_ok$name <- factor(t2_ok$name, levels = t2_ok$name[order(t2_ok$name)])
 t2_ok$name
 
 
-p<-ggplot(t1_ok) +
+p1<-ggplot(t1_ok) +
       geom_segment(aes(x=name, xend=name, y=b1, yend=b2), color=c("white","orange","purple","lightblue",
                                                                    "white","orange","purple","lightblue",
                                                                    "white","orange","purple","lightblue"), linewidth=1) +
